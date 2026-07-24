@@ -1,4 +1,4 @@
-baseURL = 'https://shanecuster.github.io/shanetalkssports/'
+baseURL = 'https://shanetalkssports.com/'
 locale = 'en-us'
 title = 'Shane Talks Sports'
 theme = 'backfield-bulletin'
