@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <article class="lead single-post">
+    <div class="eyebrow">{{ .Section | humanize }}</div>
+    <h2>{{ .Title }}</h2>
+    {{ with .Description }}<p class="dek">{{ . }}</p>{{ end }}
+    <p class="byline">{{ .Date.Format "January 2, 2006" }}</p>
+    <div class="lead-body drop-cap">
+      {{ .Content }}
+    </div>
+    <p class="back-link"><a href="{{ "/posts/" | relURL }}">&larr; Back to All Posts</a></p>
+  </article>
+{{ end }}

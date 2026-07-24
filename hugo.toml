@@ -1,0 +1,8 @@
+baseURL = 'https://shanecuster.github.io/shanetalkssports/'
+locale = 'en-us'
+title = 'Shane Talks Sports'
+theme = 'backfield-bulletin'
+
+[module]
+  [module.hugoVersion]
+    min = '0.164.0'

@@ -1,0 +1,49 @@
+{{ define "main" }}
+  {{ $section := site.GetPage "section" "posts" }}
+  {{ $posts := slice }}
+  {{ if $section }}{{ $posts = $section.Pages.ByDate.Reverse }}{{ end }}
+
+  {{ if eq (len $posts) 0 }}
+    <article class="lead frontpage-empty">
+      <div class="eyebrow">Front Page</div>
+      <h2>Coming Soon</h2>
+      <p class="dek">New stories are on the way &mdash; check back soon.</p>
+    </article>
+  {{ else }}
+    {{ $lead := index $posts 0 }}
+    {{ $rest := after 1 $posts }}
+    {{ $sidebarPosts := first 4 $rest }}
+    {{ $belowPosts := after 4 $rest }}
+
+    <div class="frontpage">
+      <article class="lead">
+        <div class="eyebrow">Front Page</div>
+        <h2><a href="{{ $lead.RelPermalink }}">{{ $lead.Title }}</a></h2>
+        {{ with $lead.Description }}<p class="dek">{{ . }}</p>{{ end }}
+        <p class="byline">{{ $lead.Date.Format "January 2, 2006" }}</p>
+        <div class="lead-body drop-cap">
+          {{ $lead.Summary }}
+        </div>
+      </article>
+
+      {{ if gt (len $sidebarPosts) 0 }}
+        <div class="divider"></div>
+        <aside>
+          <div class="side-block">
+            <h3>More Stories</h3>
+            {{ range $sidebarPosts }}
+              <div class="story-mini">
+                <h4><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
+                {{ with .Description }}<p>{{ . }}</p>{{ end }}
+              </div>
+            {{ end }}
+          </div>
+        </aside>
+      {{ end }}
+    </div>
+
+    {{ if gt (len $belowPosts) 0 }}
+      {{ partial "below-fold.html" (dict "posts" (first 3 $belowPosts)) }}
+    {{ end }}
+  {{ end }}
+{{ end }}

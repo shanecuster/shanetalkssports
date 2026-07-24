@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>THE BACKFIELD BULLETIN</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #ece5d3;
+    --paper-dark: #e2d9c2;
+    --ink: #211d16;
+    --ink-soft: #4a4436;
+    --rule: #b3a986;
+    --stamp-red: #9c3b2e;
+    --stamp-red-dim: #b6604f;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(0,0,0,0.025) 0, transparent 45%),
+      radial-gradient(circle at 80% 70%, rgba(0,0,0,0.03) 0, transparent 50%),
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.012) 0px, transparent 1px, transparent 2px);
+    color: var(--ink);
+    font-family:'PT Serif', serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  /* ===== TOP UTILITY BAR ===== */
+  .topbar{
+    border-bottom:1px solid var(--rule);
+    font-family:'Special Elite', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color: var(--ink-soft);
+    padding:8px 0;
+  }
+  .topbar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+
+  /* ===== MASTHEAD ===== */
+  .masthead{ padding:28px 0 10px; text-align:center; }
+  .masthead .kicker{
+    font-family:'Special Elite', monospace;
+    font-size:11px;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color: var(--stamp-red);
+  }
+  .masthead h1{
+    font-family:'Playfair Display', serif;
+    font-weight:900;
+    font-size:clamp(48px, 8vw, 96px);
+    margin:6px 0 4px;
+    letter-spacing:-0.01em;
+    line-height:0.95;
+  }
+  .masthead .tagline{
+    font-style:italic;
+    font-size:15px;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  .rule-thick{ border:none; border-top:3px solid var(--ink); margin:0; }
+  .rule-thin{ border:none; border-top:1px solid var(--rule); margin:0; }
+  .masthead-meta{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'Special Elite', monospace;
+    font-size:11px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--ink-soft);
+    padding:8px 0;
+  }
+
+  /* ===== FRONT PAGE GRID ===== */
+  .frontpage{
+    display:grid;
+    grid-template-columns: 2.1fr 1px 1fr;
+    gap:32px;
+    padding:36px 0;
+  }
+  .divider{ background:var(--rule); }
+
+  .eyebrow{
+    font-family:'Special Elite', monospace;
+    font-size:11px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--stamp-red);
+    margin-bottom:8px;
+  }
+  .lead h2{
+    font-family:'Playfair Display', serif;
+    font-weight:800;
+    font-size:44px;
+    line-height:1.05;
+    margin:0 0 10px;
+  }
+  .dek{
+    font-style:italic;
+    font-size:18px;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+    line-height:1.4;
+  }
+  .byline{
+    font-family:'Special Elite', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+  }
+  .halftone{
+    width:100%;
+    aspect-ratio: 16/9;
+    background:
+      radial-gradient(circle at center, var(--ink) 0.9px, transparent 1px) 0 0/6px 6px,
+      linear-gradient(135deg, #8c7f5f, #3a3428);
+    filter: grayscale(1) contrast(1.15);
+    margin-bottom:16px;
+    position:relative;
+  }
+  .halftone::after{
+    content:"FIG. 1 — FIELD VIEW, FOURTH QUARTER";
+    position:absolute; bottom:8px; left:8px;
+    font-family:'Special Elite', monospace;
+    font-size:10px;
+    color:#efe9d8;
+    background:rgba(0,0,0,0.55);
+    padding:2px 6px;
+  }
+  .lead-body{ column-count:2; column-gap:28px; font-size:16px; line-height:1.65; }
+  .lead-body p{ margin:0 0 14px; }
+  .drop-cap::first-letter{
+    font-family:'Playfair Display', serif;
+    font-weight:900;
+    font-size:58px;
+    float:left;
+    line-height:0.8;
+    padding:4px 8px 0 0;
+    color:var(--stamp-red);
+  }
+
+  /* ===== SIDEBAR ===== */
+  .side-block{ margin-bottom:30px; }
+  .side-block h3{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size:15px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:6px;
+    margin:0 0 12px;
+  }
+  .story-mini{ padding:12px 0; border-bottom:1px dotted var(--rule); }
+  .story-mini:last-child{border-bottom:none;}
+  .story-mini h4{
+    font-family:'Playfair Display', serif;
+    font-size:19px;
+    font-weight:700;
+    margin:0 0 4px;
+    line-height:1.2;
+  }
+  .story-mini p{ font-size:14px; color:var(--ink-soft); margin:0; line-height:1.4; }
+
+  /* BOX SCORE */
+  .boxscore{ font-family:'Special Elite', monospace; font-size:12px; }
+  .boxscore table{ width:100%; border-collapse:collapse; }
+  .boxscore th, .boxscore td{
+    text-align:left; padding:5px 4px;
+    border-bottom:1px solid var(--rule);
+  }
+  .boxscore th{ text-transform:uppercase; font-size:10px; letter-spacing:0.05em; color:var(--ink-soft);}
+  .boxscore td.num, .boxscore th.num{ text-align:right; }
+  .boxscore caption{
+    text-align:left; font-family:'Special Elite', monospace;
+    font-size:11px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--stamp-red); margin-bottom:8px; caption-side:top;
+  }
+
+  /* ===== SECOND ROW STORIES ===== */
+  .below-fold{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:0;
+    border-top:3px double var(--ink);
+    padding-top:26px;
+    margin-bottom:40px;
+  }
+  .col-story{ padding:0 24px; border-left:1px solid var(--rule); }
+  .col-story:first-child{ border-left:none; padding-left:0; }
+  .col-story:last-child{ padding-right:0; }
+  .col-story h4{
+    font-family:'Playfair Display', serif;
+    font-size:22px;
+    font-weight:700;
+    line-height:1.15;
+    margin:0 0 8px;
+  }
+  .col-story p{ font-size:14.5px; color:var(--ink-soft); line-height:1.55; margin:0 0 10px;}
+  .tag{
+    display:inline-block;
+    font-family:'Special Elite', monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    background:var(--ink);
+    color:var(--paper);
+    padding:2px 7px;
+    margin-bottom:10px;
+  }
+
+  footer{
+    border-top:3px solid var(--ink);
+    padding:20px 0 40px;
+    font-family:'Special Elite', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    text-align:center;
+    letter-spacing:0.05em;
+  }
+
+  @media (max-width: 860px){
+    .frontpage{ grid-template-columns:1fr; }
+    .divider{ display:none; }
+    .lead-body{ column-count:1; }
+    .below-fold{ grid-template-columns:1fr; }
+    .col-story{ border-left:none; border-top:1px solid var(--rule); padding:20px 0 0; margin-top:20px;}
+    .col-story:first-child{ border-top:none; margin-top:0; padding-top:0; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <span>Vol. XLI · No. 214</span>
+      <span>Established in Markdown, 2026</span>
+      <span>Late City Edition</span>
+    </div>
+  </div>
+
+  <header class="masthead wrap">
+    <div class="kicker">Every Score. Every Story. No Paywall.</div>
+    <h1>THE BACKFIELD BULLETIN</h1>
+    <div class="tagline">"If it happened on the field, it happens in these columns."</div>
+  </header>
+  <hr class="rule-thick">
+  <div class="wrap masthead-meta">
+    <span>Wednesday, July 22, 2026</span>
+    <span>Overtime Desk · Est. Read 6 Min</span>
+    <span>Temp at Kickoff: 61°F, Clear</span>
+  </div>
+  <hr class="rule-thin">
+
+  <main class="wrap">
+    <div class="frontpage">
+      <!-- LEAD STORY -->
+      <article class="lead">
+        <div class="eyebrow">Front Page &nbsp;·&nbsp; Rivalry Week</div>
+        <h2>Underdogs Steal Overtime Thriller On Blocked Kick</h2>
+        <p class="dek">A fourth-string kicker's nightmare becomes the story of the season, as the home side survives a two-point-conversion scare to escape with a 27–26 win.</p>
+        <p class="byline">By M. Alvarez &nbsp;·&nbsp; Staff Correspondent &nbsp;·&nbsp; Filed From Section 114</p>
+        <div class="halftone"></div>
+        <div class="lead-body drop-cap">
+          <p>Nobody in the press box saw it coming. With eleven seconds left and the visiting side lined up for what should have been a routine game-winner, a walk-on special-teamer split the line untouched and got just enough fingertip on the ball to send it fluttering wide of the post.</p>
+          <p>What followed was a delirious sprint of bodies onto the turf, a delay of nearly six minutes, and a locker room celebration that the beat writers on hand described as somewhere between a pep rally and a fire drill. Overtime, when it finally arrived, felt almost anticlimactic by comparison.</p>
+          <p>Still, there was drama left to spare. The home offense went three-and-out on its first possession, and the defense was forced to make a fourth stop of the night on third-and-goal from the six.</p>
+          <p>Afterward, the kicker who'd made the block, a sophomore walking on to just his third varsity special-teams snap of the year, said he'd been coached to do exactly one thing on that particular formation: get skinny and get up. "I got up," he said. "That's the whole story."</p>
+        </div>
+      </article>
+
+      <div class="divider"></div>
+
+      <!-- SIDEBAR -->
+      <aside>
+        <div class="side-block">
+          <h3>Around The League</h3>
+          <div class="story-mini">
+            <h4>Trade Deadline Rumors Heat Up</h4>
+            <p>Three teams reportedly circling the same veteran linebacker, per sources close to camp.</p>
+          </div>
+          <div class="story-mini">
+            <h4>Rookie QB Named Starter</h4>
+            <p>Coaching staff confirms the surprise call after a strong preseason showing.</p>
+          </div>
+          <div class="story-mini">
+            <h4>Injury Report: Two Starters Questionable</h4>
+            <p>Both are expected to be game-time decisions heading into Sunday.</p>
+          </div>
+        </div>
+
+        <div class="side-block boxscore">
+          <h3>Box Score</h3>
+          <table>
+            <caption>Final — Home 27, Visitors 26</caption>
+            <thead>
+              <tr><th>Qtr</th><th class="num">Home</th><th class="num">Away</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1st</td><td class="num">7</td><td class="num">3</td></tr>
+              <tr><td>2nd</td><td class="num">3</td><td class="num">10</td></tr>
+              <tr><td>3rd</td><td class="num">10</td><td class="num">7</td></tr>
+              <tr><td>4th</td><td class="num">7</td><td class="num">6</td></tr>
+              <tr><td>OT</td><td class="num">0</td><td class="num">0</td></tr>
+              <tr><td><strong>Final</strong></td><td class="num"><strong>27</strong></td><td class="num"><strong>26</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="side-block">
+          <h3>Weekly Standings</h3>
+          <table class="boxscore" style="width:100%;">
+            <thead><tr><th>Team</th><th class="num">W</th><th class="num">L</th></tr></thead>
+            <tbody>
+              <tr><td>River City</td><td class="num">6</td><td class="num">1</td></tr>
+              <tr><td>North Point</td><td class="num">5</td><td class="num">2</td></tr>
+              <tr><td>Ashford</td><td class="num">4</td><td class="num">3</td></tr>
+              <tr><td>Millbrook</td><td class="num">2</td><td class="num">5</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </aside>
+    </div>
+
+    <!-- BELOW THE FOLD -->
+    <section class="below-fold">
+      <div class="col-story">
+        <span class="tag">Analysis</span>
+        <h4>Why The Blitz Package Finally Clicked</h4>
+        <p>A season-long project on third down pays off at the exact right moment, and film review shows it was no accident.</p>
+      </div>
+      <div class="col-story">
+        <span class="tag">Profile</span>
+        <h4>The Long Road Back For No. 24</h4>
+        <p>Eighteen months after a season-ending injury, a veteran defender finds his way back onto the field, and into the box score.</p>
+      </div>
+      <div class="col-story">
+        <span class="tag">Column</span>
+        <h4>It's Time To Talk About The Schedule</h4>
+        <p>Our columnist argues the league's back-to-back road trips are quietly deciding playoff races before December even arrives.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    THE BACKFIELD BULLETIN &nbsp;·&nbsp; Printed Daily In Markdown &nbsp;·&nbsp; Built With Hugo &nbsp;·&nbsp; No Cookies, No Nonsense
+  </footer>
+
+</body>
+</html>

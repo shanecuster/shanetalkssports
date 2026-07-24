@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <div class="eyebrow">{{ .Title }}</div>
+  <h2 class="archive-title">All Stories</h2>
+  {{ $pages := .Pages.ByDate.Reverse }}
+  {{ if eq (len $pages) 0 }}
+    <p class="dek">No stories yet. Check back soon.</p>
+  {{ else }}
+    <div class="archive-list">
+      {{ range $pages }}
+        <div class="story-mini">
+          <h4><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
+          <p class="byline">{{ .Date.Format "January 2, 2006" }}</p>
+          {{ with .Description }}<p>{{ . }}</p>{{ end }}
+        </div>
+      {{ end }}
+    </div>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,7 @@
+name = "Backfield Bulletin"
+license = "MIT"
+description = "Old-newspaper style theme for a sports blog front page"
+min_version = "0.164.0"
+
+[author]
+  name = "Shane Custer"
